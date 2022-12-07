@@ -1,1 +1,4 @@
 https://www.scraperapi.com/blog/ruby-web-scraping-build-a-powerful-web-scraper-with-ruby/
+
+##source :2
+https://adebola-niran.medium.com/how-to-build-a-web-scraper-in-ruby-a-covid-19-live-data-example-3eef51543734

@@ -3,10 +3,11 @@ require 'httparty'
 require 'byebug'
 
 def scraper
-  url = "https://www.newchic.com/hoodies-c-12200/1.html?newhead=0&mg_id=2&from=nav&country=223&NA=1"
+  url = "https://www.worldometers.info/coronavirus/"
   unparsed_html = HTTParty.get(url)
   page = Nokogiri::HTML(unparsed_html)
-  byebug 
+  total_countries = page.css('table#main_table_countries_today > tbody > tr').map(&:text).count
+  byebug
 end
 
 scraper
