@@ -46,7 +46,17 @@ def scraper
   url = "https://mdn.github.io/learning-area/html/tables/assessment-finished/planets-data.html"
   unparsed_html = HTTParty.get(url)
   page = Nokogiri::HTML(unparsed_html)
-  total_names = page.css("table#colgroup > tbody > tr").map(&:text).count
+
+  #arrange data into array
+  total_names = page.css("th").map(&:text)
+  # total_names.map {|element| element ["row"]}
+  
+  #planet
+  i = 11
+  while i < 19
+  puts total_names[i]
+  i +=1
+  end
 
   byebug
 end
@@ -54,9 +64,9 @@ end
 scraper
 
 
+#Nokogiri
+  #.text - prints text files generated in unparshed html
 
-
-
-
+#semi got it working. puts names of planets with other random data
 
 
