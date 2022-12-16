@@ -48,15 +48,14 @@ def scraper
   page = Nokogiri::HTML(unparsed_html)
 
   #arrange data into array
-  total_names = page.css("th").map(&:text)
+  t_n = page.css("th").map(&:text)
   # total_names.map {|element| element ["row"]}
   
-  #planet
-  i = 11
-  while i < 19
-  puts total_names[i]
-  i +=1
-  end
+  #planet names
+  p t_n.select{|x| x == "Earth"}
+
+
+
 
   byebug
 end
