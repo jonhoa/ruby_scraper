@@ -3,17 +3,18 @@ require 'httparty'
 require 'byebug'
 require 'json'
 
-def scraper
-  url = "https://www.worldometers.info/coronavirus/"
-  unparsed_html = HTTParty.get(url)
-  page = Nokogiri::HTML(unparsed_html)
+# def scraper
+#   url = "https://www.worldometers.info/coronavirus/"
+#   unparsed_html = HTTParty.get(url)
+#   page = Nokogiri::HTML(unparsed_html)
 
-  records = []
-  total_countries = page.css("table#main_table_countries_today >tbody > tr >td> a.mt_a").map(&:text)
+#   records = []
+#   total_countries = page.css("table#main_table_countries_today >tbody > tr >td> a.mt_a").map(&:text)
+  
 
-  byebug
-end
-scraper
+#   byebug
+# end
+# scraper
 
 #   i = 1
 #   while i < total_countries
@@ -46,22 +47,22 @@ scraper
 
 
 #EXPERIMENTING WITH PLANETARY DATA
-# def scraper
-#   url = "https://mdn.github.io/learning-area/html/tables/assessment-finished/planets-data.html"
-#   unparsed_html = HTTParty.get(url)
-#   page = Nokogiri::HTML(unparsed_html)
+def scraper
+  url = "https://mdn.github.io/learning-area/html/tables/assessment-finished/planets-data.html"
+  unparsed_html = HTTParty.get(url)
+  page = Nokogiri::HTML(unparsed_html)
 
-#   #arrange data into array
-#   t_n = page.css("th").map(&:text)
-#   # total_names.map {|element| element ["row"]}
+  #arrange data into array
+  t_n = page.css("table> tbody> tr> th").map(&:text)
+  # total_names.map {|element| element ["row"]}
   
-#   #planet names
-#   p t_n.select{|x| x == "Earth"}
+  #planet names
+  # p t_n.select{|x| x == "Earth"}
 
 
 
 
-#   byebug
-# end
+  byebug
+end
 
-# scraper
+scraper
