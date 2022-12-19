@@ -54,12 +54,10 @@ def scraper
 
   #arrange data into array
   t_n = page.css("table> tbody> tr> th").map(&:text)
-  # total_names.map {|element| element ["row"]}
+
   
   #planet names
-  # p t_n.select{|x| x == "Earth"}
-
-
+  t1 = t_n.reject{|element| element.to_s.include? " " }
 
 
   byebug
