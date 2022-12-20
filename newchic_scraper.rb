@@ -3,18 +3,19 @@ require 'httparty'
 require 'byebug'
 require 'json'
 
-def scraper
-  url = "https://www.worldometers.info/coronavirus/"
-  unparsed_html = HTTParty.get(url)
-  page = Nokogiri::HTML(unparsed_html)
+#EXPERIMENTING WITH COVID DATA
+# def scraper
+#   url = "https://www.worldometers.info/coronavirus/"
+#   unparsed_html = HTTParty.get(url)
+#   page = Nokogiri::HTML(unparsed_html)
 
-  records = []
-  total_countries = page.css("table#main_table_countries_today >tbody > tr >td> a.mt_a").map(&:text)
+#   records = []
+#   total_countries = page.css("table#main_table_countries_today >tbody > tr >td> a.mt_a").map(&:text)
   
 
-  byebug
-end
-scraper
+#   byebug
+# end
+# scraper
 
 
 
@@ -38,3 +39,24 @@ scraper
 # scraper
 
 #practice fetching data using this site https://www.worldometers.info/
+
+#EXPERMINTING WITH POPULATION DATA
+def scraper
+  url = "https://www.worldometers.info/world-population/population-by-country/"
+  unparsed_html = HTTParty.get(url)
+  page = Nokogiri::HTML(unparsed_html)
+
+  tc = page.css("table> tbody> tr> td").map(&:text)
+  tname = page.css("table> tbody> tr> td> a").map(&:text)
+
+  str_arr = []
+
+  tc.each do |item|
+    if item.match(/[a-zA-Z]/)
+    str_arr << item
+  end
+end
+  [str_arr.join(" ")]
+  byebug
+end
+scraper
