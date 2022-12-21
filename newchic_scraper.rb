@@ -53,10 +53,12 @@ def scraper
 
   tc.each do |item|
     if item.match(/[a-zA-Z]/)
-    str_arr << item
+      str_arr << item
+      str_arr = str_arr.reject {|element| element.include?("N.A.")}
+    end
   end
-end
-  [str_arr.join(" ")]
+ 
+  puts str_arr
   byebug
 end
 scraper
