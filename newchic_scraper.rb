@@ -45,20 +45,32 @@ def scraper
   url = "https://www.worldometers.info/world-population/population-by-country/"
   unparsed_html = HTTParty.get(url)
   page = Nokogiri::HTML(unparsed_html)
+  tp = []
 
   tc = page.css("table> tbody> tr> td").map(&:text)
   tname = page.css("table> tbody> tr> td> a").map(&:text)
-
+  page.xpath('//td[@style="font-weight: bold;"]').each do |link|
+    tp << link.content
+  end
   str_arr = []
 
   tc.each do |item|
-    if item.match(/[a-zA-Z]/)
+    if item.match(/\d+/)
       str_arr << item
-      str_arr = str_arr.reject {|element| element.include?("N.A.")}
+      str_arr = str_arr.reject {|element| element.length < 9 }
     end
   end
+  # tc.each do |item|
+  #   if item.match(/[a-zA-Z]/)
+  #     str_arr << item
+  #     str_arr = str_arr.reject {|element| element.include?("N.A.")}
+  #   end
+  # end
  
-  puts str_arr
+  # puts str_arr
   byebug
 end
 scraper
+
+#select element td style = bold to capture population data
+ #The code to do that is .xpath('//td[@style="font-weight: bold;"]')
