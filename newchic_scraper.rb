@@ -43,7 +43,7 @@ require 'json'
 #EXPERMINTING WITH POPULATION DATA
 def scraper
   #Interface
-  puts "========WEB SCRAPER 2.0 COVID COUNTRY & POPULATION==========="
+  puts "========WEB SCRAPER 2.0 WORLD POPULATION==========="
   puts 
   puts "Shortcuts"
   puts "---------"
@@ -73,7 +73,7 @@ def scraper
     cpop << "#{tname} : #{tp}"
   end
 
-i = 0
+  i = 0
   while i < 1
     #UI
     puts "Enter command"
