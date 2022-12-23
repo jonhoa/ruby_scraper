@@ -42,33 +42,61 @@ require 'json'
 
 #EXPERMINTING WITH POPULATION DATA
 def scraper
+  #Interface
+  puts "========WEB SCRAPER 2.0 COVID COUNTRY & POPULATION==========="
+  puts 
+  puts "Shortcuts"
+  puts "---------"
+  puts " tp ==> Total Population"
+  puts " tname ==> Country Names"
+  puts " cpop ==> Country Names + Population"
+  puts
+
+  #Parsing data
   url = "https://www.worldometers.info/world-population/population-by-country/"
   unparsed_html = HTTParty.get(url)
-  page = Nokogiri::HTML(unparsed_html)
+  page = Nokogiri::HTML(unparsed_html.body)
   tp = []
 
   tc = page.css("table> tbody> tr> td").map(&:text)
   tname = page.css("table> tbody> tr> td> a").map(&:text)
+
+  #extract population column with bold integers
   page.xpath('//td[@style="font-weight: bold;"]').each do |link|
     tp << link.content
   end
   str_arr = []
+  
+  #country and population
+  cpop = []
+  tname.zip(tp).each do |tname, tp|
+    cpop << "#{tname} : #{tp}"
+  end
 
-  tc.each do |item|
-    if item.match(/\d+/)
-      str_arr << item
-      str_arr = str_arr.reject {|element| element.length < 9 }
+i = 0
+  while i < 1
+    #UI
+    puts "Enter command"
+    command = gets.chomp
+    puts 
+    #command logic
+    if command == "tp"
+      puts tp
+      i += 1
+    elsif command == "tname"
+      puts tname
+      i += 1
+    elsif command == "cpop"
+      puts cpop
+      i += 1
+    elsif command == "exit"
+      exit
+    else
+      puts "! Wrong command !"
+      puts "---------------"
     end
   end
-  # tc.each do |item|
-  #   if item.match(/[a-zA-Z]/)
-  #     str_arr << item
-  #     str_arr = str_arr.reject {|element| element.include?("N.A.")}
-  #   end
-  # end
- 
-  # puts str_arr
-  byebug
+ byebug
 end
 scraper
 
