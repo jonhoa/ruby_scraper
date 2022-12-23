@@ -35,7 +35,27 @@ require 'json'
 
 #   byebug
 # end
+# scraper
 
+#EXPERIMENTING WITH GLOBAL POWER STATISTICS
+# def scraper
+#   url = "https://www.worldometers.info/energy/"
+#   unparsed_html = HTTParty.get(url)
+#   page = Nokogiri::HTML(unparsed_html.body)
+
+#   #Country
+#   tc = page.css('table > tbody > tr >td > a').map(&:text)
+  
+#   #Energy Consumption
+#   ec = page.xpath('//td[@style="font-weight: bold; text-align:right"]').map(&:text)
+#   power = []
+#   ec.each do |item|
+#     if item.length > 9
+#       power << item
+#     end
+#   end
+#   byebug
+# end
 # scraper
 
 #practice fetching data using this site https://www.worldometers.info/
@@ -102,3 +122,5 @@ scraper
 
 #select element td style = bold to capture population data
  #The code to do that is .xpath('//td[@style="font-weight: bold;"]')
+
+ #make the app dynamic enough to extract data after inputing the url of any site
